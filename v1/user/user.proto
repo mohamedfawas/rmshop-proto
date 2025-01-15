@@ -1,0 +1,31 @@
+syntax = "proto3";
+
+package v1.user;
+
+option go_package = "github.com/mohamedfawas/rmshop-proto/gen/v1/user;userv1";
+
+service UserService {
+    rpc CreateUser(CreateUserRequest) returns (CreateUserResponse);
+    rpc GetUserInfo(GetUserInfoRequest) returns (GetUserInfoResponse);
+}
+
+message CreateUserRequest {
+    string name = 1;
+    string email = 2;
+    string password = 3;
+}
+
+message CreateUserResponse {
+    string user_id = 1;
+}
+
+message GetUserInfoRequest {
+    string user_id = 1;
+}
+
+message GetUserInfoResponse {
+    string id = 1;
+    string name = 2;
+    string email = 3;
+    string created_at = 4;
+}

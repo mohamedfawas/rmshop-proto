@@ -1,0 +1,43 @@
+syntax = "proto3";
+
+package v1.auth;
+
+option go_package = "github.com/mohamedfawas/rmshop-proto/gen/v1/auth;authv1";
+
+service AuthService {
+    // Authentication operations
+    rpc Login(LoginRequest) returns (LoginResponse);
+    rpc Logout(LogoutRequest) returns (LogoutResponse);
+    rpc ValidateToken(ValidateTokenRequest) returns (ValidateTokenResponse);
+}
+
+message LoginRequest {
+    string email = 1;  // both admin and user should use email for login
+    string password = 2;
+}
+
+message LoginResponse {
+    string token = 1;
+    string user_id = 2;
+    string user_type = 3;
+}
+
+message LogoutRequest {
+    string token = 1;
+}
+
+message LogoutResponse {
+    bool success = 1;
+}
+
+message ValidateTokenRequest {
+    string token = 1;
+}
+
+message ValidateTokenResponse {
+    bool is_valid = 1;
+    string user_id = 2;
+    string user_type = 3;
+}
+
+
